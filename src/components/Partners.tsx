@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 const partners = [
-  { name: 'Polygon', logo: '/images/clone/partners/polygon.svg', url: 'https://polygonscan.com/token/0x56633733fc8baf9f730ad2b6b9956ae22c6d4148' },
+  { name: 'Polygon', logo: '/images/clone/partners/polygon.svg', url: 'https://polygonscan.com/token/0x56633733fc8baf9f730ad2b6b9956ae22c6d4148', lightBackground: true },
   { name: 'OpenSea', logo: '/images/clone/partners/openseaw.svg', url: 'https://opensea.io/collection/coincollect-nfts' },
   { name: 'CoinMarketCap', logo: '/images/clone/partners/coinmarketcap.svg', url: 'https://coinmarketcap.com/currencies/coincollect/' },
   { name: 'Rarible', logo: '/images/clone/partners/rarible.svg', url: 'https://market.coincollect.org' },
@@ -14,6 +14,8 @@ const partners = [
 ];
 
 export default function Partners() {
+  const loopPartners = [...partners, ...partners];
+
   return (
     <section className="py-12 bg-black/50 border-t border-white/5">
       <div className="container mx-auto px-6">
@@ -23,32 +25,36 @@ export default function Partners() {
           viewport={{ once: true }}
           className="text-center mb-10"
         >
-          <p className="text-pink-500 font-semibold uppercase tracking-widest text-sm mb-2">TRUSTED BY THE BEST</p>
-          <h3 className="text-2xl font-bold text-white">Our Strategic Partners</h3>
+          <p className="text-pink-500 font-semibold uppercase tracking-widest text-sm mb-2">Where We&apos;re Featured</p>
+          <h3 className="text-2xl font-bold text-white">Partnered, listed, and independently featured across Web3.</h3>
         </motion.div>
 
-        <div className="flex flex-wrap justify-center items-center gap-12 md:gap-16 grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
-          {partners.map((partner, index) => (
-            <motion.a 
-              key={index}
-              href={partner.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="w-32 h-16 flex items-center justify-center transition hover:scale-110"
-            >
-              <Image 
-                src={partner.logo} 
-                alt={partner.name} 
-                width={120} 
-                height={60} 
-                className="max-h-12 w-auto object-contain"
-              />
-            </motion.a>
-          ))}
+        <div className="relative overflow-hidden">
+          <motion.div
+            className="flex w-max items-center gap-10 md:gap-14 grayscale opacity-85 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+            animate={{ x: ['0%', '-50%'] }}
+            transition={{ duration: 24, repeat: Infinity, ease: 'linear' }}
+          >
+            {loopPartners.map((partner, index) => (
+              <a
+                key={`${partner.name}-${index}`}
+                href={partner.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`w-36 h-16 shrink-0 flex items-center justify-center transition hover:scale-110 ${
+                  partner.lightBackground ? 'bg-white/90 rounded-md px-2' : ''
+                }`}
+              >
+                <Image
+                  src={partner.logo}
+                  alt={partner.name}
+                  width={128}
+                  height={60}
+                  className="max-h-12 w-auto object-contain"
+                />
+              </a>
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>
