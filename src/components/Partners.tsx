@@ -12,6 +12,7 @@ const partners = [
   { name: 'DappRadar', logo: '/images/clone/partners/dappradar.png', url: 'https://dappradar.com/dapp/coincollect' },
   { name: 'CoinGecko', logo: '/images/clone/partners/coingecko.svg', url: 'https://www.coingecko.com/en/coins/coincollect' },
   { name: 'Unstoppable Domains', logo: '/images/unstoppable.png', url: 'https://get.unstoppabledomains.com/collect/' },
+  { name: 'Product Hunt', logo: '/images/clone/partners/producthunt.png', url: 'https://www.producthunt.com/products/coincollect' },
 ];
 
 export default function Partners() {
