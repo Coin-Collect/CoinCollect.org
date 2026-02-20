@@ -63,7 +63,7 @@ const nftProjects: NFTProject[] = [
 ];
 
 export default function NFTShowcase() {
-  const [timeTick, setTimeTick] = useState(() => Date.now());
+  const [timeTick, setTimeTick] = useState(0);
   const scrollerRef = useRef<HTMLDivElement>(null);
   const isInteractingRef = useRef(false);
   const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -71,15 +71,15 @@ export default function NFTShowcase() {
   const cardTimings = useMemo(
     () =>
       loopProjects.map((_, idx) => ({
-        cycleMs: 1700 + ((idx * 463) % 1900),
-        phaseMs: (idx * 733) % 2600,
+        cycleSteps: 7 + ((idx * 3) % 9),
+        phaseSteps: (idx * 5) % 11,
       })),
     [loopProjects],
   );
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setTimeTick(Date.now());
+      setTimeTick((prev) => prev + 1);
     }, 250);
     return () => clearInterval(timer);
   }, []);
@@ -135,8 +135,9 @@ export default function NFTShowcase() {
         >
           <div className="flex w-max gap-5 md:gap-6 pr-6">
             {loopProjects.map((project, index) => {
-              const { cycleMs, phaseMs } = cardTimings[index];
-              const activeImage = project.images[Math.floor((timeTick + phaseMs) / cycleMs) % project.images.length];
+              const { cycleSteps, phaseSteps } = cardTimings[index];
+              const activeIndex = Math.floor((timeTick + phaseSteps) / cycleSteps) % project.images.length;
+              const activeImage = project.images[activeIndex];
               const isVideoLogo = project.logo.endsWith('.webm');
 
               return (
