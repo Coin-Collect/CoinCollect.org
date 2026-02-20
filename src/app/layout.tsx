@@ -68,13 +68,12 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: [
-      { url: '/images/clone/favicon.ico' },
-      { url: '/favicon.ico' },
-    ],
-    shortcut: '/images/clone/favicon.ico',
-    apple: '/images/clone/logonew.png',
+    icon: [{ url: '/icon.png', type: 'image/png' }],
+    shortcut: '/icon.png',
+    apple: '/apple-icon.png',
   },
+  manifest: '/manifest.webmanifest',
+  themeColor: '#000000',
   category: 'technology',
 };
 
