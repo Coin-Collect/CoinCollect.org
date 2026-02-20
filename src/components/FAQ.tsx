@@ -96,35 +96,6 @@ const faqData: FAQCategory[] = [
         answer: 'Yes, absolutely. Even the Starter NFTs are limited in supply and provide earning utility. Their scarcity and functional benefits mean they can hold significant value and can be traded on marketplaces just like other tiers.'
       }
     ]
-  },
-  {
-    id: 'others',
-    title: 'Others',
-    items: [
-      {
-        question: 'What are the upcoming features for CoinCollect?',
-        answer: 'Our detailed roadmap outlines exciting future developments, including Community Collections, dedicated Community Spaces, gamified Quests, enhanced MultiChain interoperability, and further DAO governance advancements.'
-      },
-      {
-        question: 'Where can I find more technical details and whitepaper?',
-        answer: (
-          <>
-            For comprehensive technical specifications, smart contract audits, and in-depth protocol information, please refer to our{' '}
-            <a href="https://coincollect.org/assets/docs/CoinCollectWhitePaper.pdf" target="_blank" rel="noopener noreferrer" className="text-pink-500 hover:text-pink-400 underline">
-              WhitePaper
-            </a>{' '}
-            and our extensive{' '}
-            <a href="https://docs.coincollect.org/" target="_blank" rel="noopener noreferrer" className="text-pink-500 hover:text-pink-400 underline">
-              Docs section
-            </a>.
-          </>
-        )
-      },
-      {
-        question: 'How secure are CoinCollect\'s pools and smart contracts?',
-        answer: 'CoinCollect utilizes industry-standard, audited MasterChef contracts for staking pools, a widely recognized and trusted framework in DeFi. We prioritize security and are committed to regular audits to ensure the safety of your assets.'
-      }
-    ]
   }
 ];
 
