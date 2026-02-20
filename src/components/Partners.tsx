@@ -60,7 +60,7 @@ export default function Partners() {
 
         <div
           ref={mobileScrollerRef}
-          className="md:hidden overflow-x-auto touch-pan-x no-scrollbar [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+          className="md:hidden h-20 overflow-x-auto touch-pan-x no-scrollbar [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
           onTouchStart={() => {
             if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
             isInteractingRef.current = true;
@@ -78,7 +78,7 @@ export default function Partners() {
                 href={partner.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`w-36 h-16 shrink-0 flex items-center justify-center transition ${
+                className={`w-36 h-16 shrink-0 flex items-center justify-center overflow-hidden ${
                   partner.lightBackground ? 'bg-white/90 rounded-md px-2' : ''
                 }`}
               >
@@ -96,7 +96,7 @@ export default function Partners() {
 
         <div
           ref={desktopScrollerRef}
-          className="hidden md:block overflow-x-auto no-scrollbar [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+          className="hidden md:block h-20 overflow-x-auto no-scrollbar [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
         >
           <div className="flex w-max items-center gap-10 md:gap-14 grayscale opacity-85 hover:grayscale-0 hover:opacity-100 transition-all duration-500 pr-6">
             {loopPartners.map((partner, index) => (
@@ -105,7 +105,7 @@ export default function Partners() {
                 href={partner.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`w-36 h-16 shrink-0 flex items-center justify-center transition hover:scale-110 ${
+                className={`w-36 h-16 shrink-0 flex items-center justify-center overflow-hidden ${
                   partner.lightBackground ? 'bg-white/90 rounded-md px-2' : ''
                 }`}
               >

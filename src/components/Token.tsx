@@ -38,7 +38,7 @@ const tokenPlatforms = [
   {
     name: 'Coinbase',
     url: 'https://www.coinbase.com/price/coincollect',
-    icon: <SiCoinbase className="text-[#0052ff] text-[6rem]" />,
+    icon: <SiCoinbase className="text-[#0052ff] text-[4.5rem]" />,
     showName: false,
   },
   {
@@ -150,7 +150,7 @@ export default function Token() {
 
             <div
               ref={mobileScrollerRef}
-              className="md:hidden overflow-x-auto touch-pan-x no-scrollbar [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+              className="md:hidden h-20 overflow-x-auto touch-pan-x no-scrollbar [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
               onTouchStart={() => {
                 if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
                 isInteractingRef.current = true;
@@ -168,10 +168,10 @@ export default function Token() {
                     href={platform.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="h-16 min-w-56 px-5 rounded-xl border border-white/10 bg-white/5 hover:border-pink-500/40 transition flex items-center justify-center gap-3 shrink-0"
+                    className="h-16 min-w-56 px-5 rounded-xl border border-white/10 bg-white/5 hover:border-pink-500/40 transition flex items-center justify-center gap-3 shrink-0 overflow-hidden"
                   >
                     {platform.icon ? (
-                      <span>{platform.icon}</span>
+                      <span className="flex h-full items-center leading-none">{platform.icon}</span>
                     ) : null}
                     {platform.textOnly ? <span className="text-white font-semibold">{platform.name}</span> : null}
                     {platform.showName ? <span className="text-white font-semibold">{platform.name}</span> : null}
@@ -182,7 +182,7 @@ export default function Token() {
 
             <div
               ref={desktopScrollerRef}
-              className="hidden md:block overflow-x-auto no-scrollbar [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+              className="hidden md:block h-20 overflow-x-auto no-scrollbar [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
             >
               <div className="flex w-max items-center gap-6 md:gap-8 pr-6">
                 {loopTokenPlatforms.map((platform, index) => (
@@ -191,10 +191,10 @@ export default function Token() {
                     href={platform.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="h-16 min-w-56 px-5 rounded-xl border border-white/10 bg-white/5 hover:border-pink-500/40 transition flex items-center justify-center gap-3 shrink-0"
+                    className="h-16 min-w-56 px-5 rounded-xl border border-white/10 bg-white/5 hover:border-pink-500/40 transition flex items-center justify-center gap-3 shrink-0 overflow-hidden"
                   >
                     {platform.icon ? (
-                      <span>{platform.icon}</span>
+                      <span className="flex h-full items-center leading-none">{platform.icon}</span>
                     ) : null}
                     {platform.textOnly ? <span className="text-white font-semibold">{platform.name}</span> : null}
                     {platform.showName ? <span className="text-white font-semibold">{platform.name}</span> : null}
