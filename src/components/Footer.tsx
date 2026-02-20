@@ -10,9 +10,9 @@ export default function Footer() {
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500"></div>
       
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-16">
           {/* Brand */}
-          <div>
+          <div className="col-span-2 lg:col-span-1">
             <Link href="/" className="mb-6 block">
                <Image src="/images/clone/logonew.png" alt="CoinCollect" width={180} height={50} />
             </Link>
@@ -54,7 +54,7 @@ export default function Footer() {
           </div>
 
           {/* Contact */}
-          <div>
+          <div className="col-span-2 lg:col-span-1">
              <h4 className="text-white font-bold text-lg mb-6">Contact Us</h4>
              <p className="text-gray-400 mb-2">info@coincollect.org</p>
              <p className="text-gray-400">For partnerships, listings, and general inquiries, reach us by email or connect through our community channels.</p>
@@ -63,6 +63,7 @@ export default function Footer() {
 
         <div className="border-t border-white/10 pt-8 text-center text-gray-500 text-sm">
           <p>&copy; {new Date().getFullYear()} CoinCollect. All Rights Reserved.</p>
+          <p className="mt-2 text-xs text-gray-500/90">Shaping a community-powered Web3 future where CoinCollect evolves with AI governance and autonomous agents.</p>
         </div>
       </div>
     </footer>

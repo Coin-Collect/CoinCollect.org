@@ -15,16 +15,16 @@ export default function About() {
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          className="w-full md:w-1/2 flex justify-center"
+          className="w-full md:w-1/2 flex justify-center px-2 md:px-0"
         >
-          <div className="relative">
+          <div className="relative mx-auto">
             <div className="absolute inset-0 bg-pink-500 rounded-full blur-xl opacity-20 animate-pulse"></div>
             <Image 
               src="/images/clone/about.webp" 
               alt="About CoinCollect" 
               width={500} 
               height={500} 
-              className="relative z-10 drop-shadow-2xl animate-float"
+              className="relative z-10 drop-shadow-2xl animate-float mx-auto w-[92vw] max-w-[500px] md:w-auto scale-[1.06] md:scale-100 translate-x-3 md:translate-x-0"
             />
           </div>
         </motion.div>
