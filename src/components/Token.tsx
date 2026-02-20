@@ -56,20 +56,26 @@ const tokenPlatforms = [
 export default function Token() {
   const loopTokenPlatforms = [...tokenPlatforms, ...tokenPlatforms];
   const mobileScrollerRef = useRef<HTMLDivElement>(null);
+  const desktopScrollerRef = useRef<HTMLDivElement>(null);
   const isInteractingRef = useRef(false);
   const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    const el = mobileScrollerRef.current;
-    if (!el) return;
+    const hasScroller = mobileScrollerRef.current || desktopScrollerRef.current;
+    if (!hasScroller) return;
 
     const timer = setInterval(() => {
-      const node = mobileScrollerRef.current;
-      if (!node || isInteractingRef.current) return;
+      if (isInteractingRef.current) return;
 
-      node.scrollLeft += 0.8;
-      const resetAt = node.scrollWidth / 2;
-      if (node.scrollLeft >= resetAt) node.scrollLeft -= resetAt;
+      const scrollers = [mobileScrollerRef.current, desktopScrollerRef.current].filter(
+        (node): node is HTMLDivElement => Boolean(node),
+      );
+
+      scrollers.forEach((node) => {
+        node.scrollLeft += 0.8;
+        const resetAt = node.scrollWidth / 2;
+        if (node.scrollLeft >= resetAt) node.scrollLeft -= resetAt;
+      });
     }, 16);
 
     return () => {
@@ -144,7 +150,7 @@ export default function Token() {
 
             <div
               ref={mobileScrollerRef}
-              className="md:hidden overflow-x-auto touch-pan-x no-scrollbar"
+              className="md:hidden overflow-x-auto touch-pan-x no-scrollbar [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
               onTouchStart={() => {
                 if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
                 isInteractingRef.current = true;
@@ -174,12 +180,11 @@ export default function Token() {
               </div>
             </div>
 
-            <div className="hidden md:block relative overflow-hidden">
-              <motion.div
-                className="flex w-max items-center gap-6 md:gap-8"
-                animate={{ x: ['0%', '-50%'] }}
-                transition={{ duration: 22, repeat: Infinity, ease: 'linear' }}
-              >
+            <div
+              ref={desktopScrollerRef}
+              className="hidden md:block overflow-x-auto no-scrollbar [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+            >
+              <div className="flex w-max items-center gap-6 md:gap-8 pr-6">
                 {loopTokenPlatforms.map((platform, index) => (
                   <a
                     key={`${platform.name}-${index}`}
@@ -195,7 +200,7 @@ export default function Token() {
                     {platform.showName ? <span className="text-white font-semibold">{platform.name}</span> : null}
                   </a>
                 ))}
-              </motion.div>
+              </div>
             </div>
           </motion.div>
 

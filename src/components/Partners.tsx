@@ -17,20 +17,26 @@ const partners = [
 export default function Partners() {
   const loopPartners = [...partners, ...partners];
   const mobileScrollerRef = useRef<HTMLDivElement>(null);
+  const desktopScrollerRef = useRef<HTMLDivElement>(null);
   const isInteractingRef = useRef(false);
   const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    const el = mobileScrollerRef.current;
-    if (!el) return;
+    const hasScroller = mobileScrollerRef.current || desktopScrollerRef.current;
+    if (!hasScroller) return;
 
     const timer = setInterval(() => {
-      const node = mobileScrollerRef.current;
-      if (!node || isInteractingRef.current) return;
+      if (isInteractingRef.current) return;
 
-      node.scrollLeft += 0.8;
-      const resetAt = node.scrollWidth / 2;
-      if (node.scrollLeft >= resetAt) node.scrollLeft -= resetAt;
+      const scrollers = [mobileScrollerRef.current, desktopScrollerRef.current].filter(
+        (node): node is HTMLDivElement => Boolean(node),
+      );
+
+      scrollers.forEach((node) => {
+        node.scrollLeft += 0.8;
+        const resetAt = node.scrollWidth / 2;
+        if (node.scrollLeft >= resetAt) node.scrollLeft -= resetAt;
+      });
     }, 16);
 
     return () => {
@@ -54,7 +60,7 @@ export default function Partners() {
 
         <div
           ref={mobileScrollerRef}
-          className="md:hidden overflow-x-auto touch-pan-x no-scrollbar"
+          className="md:hidden overflow-x-auto touch-pan-x no-scrollbar [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
           onTouchStart={() => {
             if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
             isInteractingRef.current = true;
@@ -88,12 +94,11 @@ export default function Partners() {
           </div>
         </div>
 
-        <div className="hidden md:block relative overflow-hidden">
-          <motion.div
-            className="flex w-max items-center gap-10 md:gap-14 grayscale opacity-85 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
-            animate={{ x: ['0%', '-50%'] }}
-            transition={{ duration: 24, repeat: Infinity, ease: 'linear' }}
-          >
+        <div
+          ref={desktopScrollerRef}
+          className="hidden md:block overflow-x-auto no-scrollbar [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        >
+          <div className="flex w-max items-center gap-10 md:gap-14 grayscale opacity-85 hover:grayscale-0 hover:opacity-100 transition-all duration-500 pr-6">
             {loopPartners.map((partner, index) => (
               <a
                 key={`${partner.name}-${index}`}
@@ -113,7 +118,7 @@ export default function Partners() {
                 />
               </a>
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
