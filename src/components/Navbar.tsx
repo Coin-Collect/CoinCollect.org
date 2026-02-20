@@ -17,17 +17,17 @@ export default function Navbar() {
       animate={{ y: 0 }}
       className="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10"
     >
-      <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+      <div className="container mx-auto px-4 sm:px-6 py-3 lg:py-4 flex justify-between items-center">
         <Link href="/" className="flex items-center">
            <video 
              autoPlay 
              loop 
              muted 
              playsInline
-             className="h-12 w-auto"
+             className="h-9 lg:h-12 w-auto"
            >
              <source src="/images/logo.webm" type="video/webm" />
-             <img src="/images/clone/logonew.png" alt="CoinCollect" className="h-10 w-auto" />
+             <img src="/images/clone/logonew.png" alt="CoinCollect" className="h-8 lg:h-10 w-auto" />
            </video>
         </Link>
         
@@ -54,7 +54,7 @@ export default function Navbar() {
         {/* Mobile Menu Button */}
         <div className="lg:hidden">
           <button onClick={toggleMenu} className="text-white focus:outline-none">
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            {isOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
