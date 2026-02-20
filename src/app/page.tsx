@@ -5,6 +5,7 @@ import StrategicPartners from '@/components/StrategicPartners';
 import About from '@/components/About';
 import Services from '@/components/Services';
 import Token from '@/components/Token';
+import NFTShowcase from '@/components/NFTShowcase';
 import Roadmap from '@/components/Roadmap';
 import FAQ from '@/components/FAQ';
 import Footer from '@/components/Footer';
@@ -18,6 +19,7 @@ export default function Home() {
       <Services />
       <About />
       <Token />
+      <NFTShowcase />
       <Roadmap />
       <FAQ />
       <StrategicPartners />
