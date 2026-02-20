@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { FaDownload, FaLock, FaShoppingCart, FaSignOutAlt } from 'react-icons/fa';
+import { SiBinance, SiCoinbase } from 'react-icons/si';
 
 const features = [
   {
@@ -26,7 +27,34 @@ const features = [
   },
 ];
 
+const tokenPlatforms = [
+  {
+    name: 'Binance',
+    url: 'https://www.binance.com/en/how-to-buy/coincollect',
+    icon: <SiBinance className="text-[#f3ba2f] text-3xl" />,
+    showName: true,
+  },
+  {
+    name: 'Coinbase',
+    url: 'https://www.coinbase.com/price/coincollect',
+    icon: <SiCoinbase className="text-[#0052ff] text-[6rem]" />,
+    showName: false,
+  },
+  {
+    name: 'Crypto.com',
+    url: 'https://crypto.com/en/price/coincollect',
+    textOnly: true,
+  },
+  {
+    name: 'CoinDesk',
+    url: 'https://www.coindesk.com/price/coincollect',
+    textOnly: true,
+  },
+];
+
 export default function Token() {
+  const loopTokenPlatforms = [...tokenPlatforms, ...tokenPlatforms];
+
   return (
     <section id="token" className="py-24 bg-black relative">
       <div className="absolute inset-0 bg-[url('/images/token_bg.png')] bg-cover bg-center opacity-20"></div>
@@ -78,6 +106,44 @@ export default function Token() {
         </div>
 
         <div className="flex flex-col gap-12">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="pt-2"
+          >
+            <p className="text-pink-500 font-semibold uppercase tracking-widest text-sm mb-2 text-center">
+              Where To Track COLLECT
+            </p>
+            <h3 className="text-2xl font-bold text-white text-center mb-8">
+              Follow CoinCollect across top market platforms.
+            </h3>
+
+            <div className="relative overflow-hidden">
+              <motion.div
+                className="flex w-max items-center gap-6 md:gap-8"
+                animate={{ x: ['0%', '-50%'] }}
+                transition={{ duration: 22, repeat: Infinity, ease: 'linear' }}
+              >
+                {loopTokenPlatforms.map((platform, index) => (
+                  <a
+                    key={`${platform.name}-${index}`}
+                    href={platform.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="h-16 min-w-56 px-5 rounded-xl border border-white/10 bg-white/5 hover:border-pink-500/40 transition flex items-center justify-center gap-3 shrink-0"
+                  >
+                    {platform.icon ? (
+                      <span>{platform.icon}</span>
+                    ) : null}
+                    {platform.textOnly ? <span className="text-white font-semibold">{platform.name}</span> : null}
+                    {platform.showName ? <span className="text-white font-semibold">{platform.name}</span> : null}
+                  </a>
+                ))}
+              </motion.div>
+            </div>
+          </motion.div>
+
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -93,7 +159,7 @@ export default function Token() {
                target="_blank"
                className="inline-flex items-center text-pink-500 font-bold hover:text-pink-400 transition"
              >
-               <span className="mr-2">▶</span> Let's Start
+               <span className="mr-2">▶</span> Let&apos;s Start
              </a>
           </motion.div>
 
@@ -117,6 +183,7 @@ export default function Token() {
               </motion.div>
             ))}
           </div>
+
         </div>
       </div>
     </section>
