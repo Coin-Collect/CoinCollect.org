@@ -56,8 +56,8 @@ export default function Footer() {
           {/* Contact */}
           <div>
              <h4 className="text-white font-bold text-lg mb-6">Contact Us</h4>
-             <p className="text-gray-400 mb-2">support@coincollect.org</p>
-             <p className="text-gray-400">Join our community for 24/7 support.</p>
+             <p className="text-gray-400 mb-2">info@coincollect.org</p>
+             <p className="text-gray-400">For partnerships, listings, and general inquiries, reach us by email or connect through our community channels.</p>
           </div>
         </div>
 
