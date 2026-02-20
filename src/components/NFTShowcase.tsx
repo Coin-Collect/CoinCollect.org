@@ -184,7 +184,7 @@ export default function NFTShowcase() {
                       Mint
                     </a>
                     <a
-                      href="https://app.coincollect.org"
+                      href="https://app.coincollect.org/nftpools"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-center px-4 py-2.5 rounded-full border border-white/25 text-white text-sm font-semibold hover:bg-white/10 transition"
