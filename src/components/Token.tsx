@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
 import { FaDownload, FaLock, FaShoppingCart, FaSignOutAlt } from 'react-icons/fa';
 import { SiBinance, SiCoinbase } from 'react-icons/si';
 
@@ -54,6 +55,28 @@ const tokenPlatforms = [
 
 export default function Token() {
   const loopTokenPlatforms = [...tokenPlatforms, ...tokenPlatforms];
+  const mobileScrollerRef = useRef<HTMLDivElement>(null);
+  const isInteractingRef = useRef(false);
+  const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    const el = mobileScrollerRef.current;
+    if (!el) return;
+
+    const timer = setInterval(() => {
+      const node = mobileScrollerRef.current;
+      if (!node || isInteractingRef.current) return;
+
+      node.scrollLeft += 0.8;
+      const resetAt = node.scrollWidth / 2;
+      if (node.scrollLeft >= resetAt) node.scrollLeft -= resetAt;
+    }, 16);
+
+    return () => {
+      clearInterval(timer);
+      if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+    };
+  }, []);
 
   return (
     <section id="token" className="py-24 bg-black relative">
@@ -119,7 +142,39 @@ export default function Token() {
               Follow CoinCollect across top market platforms.
             </h3>
 
-            <div className="relative overflow-hidden">
+            <div
+              ref={mobileScrollerRef}
+              className="md:hidden overflow-x-auto touch-pan-x no-scrollbar"
+              onTouchStart={() => {
+                if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+                isInteractingRef.current = true;
+              }}
+              onTouchEnd={() => {
+                resumeTimeoutRef.current = setTimeout(() => {
+                  isInteractingRef.current = false;
+                }, 900);
+              }}
+            >
+              <div className="flex w-max items-center gap-6 pr-6">
+                {loopTokenPlatforms.map((platform, index) => (
+                  <a
+                    key={`${platform.name}-${index}`}
+                    href={platform.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="h-16 min-w-56 px-5 rounded-xl border border-white/10 bg-white/5 hover:border-pink-500/40 transition flex items-center justify-center gap-3 shrink-0"
+                  >
+                    {platform.icon ? (
+                      <span>{platform.icon}</span>
+                    ) : null}
+                    {platform.textOnly ? <span className="text-white font-semibold">{platform.name}</span> : null}
+                    {platform.showName ? <span className="text-white font-semibold">{platform.name}</span> : null}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div className="hidden md:block relative overflow-hidden">
               <motion.div
                 className="flex w-max items-center gap-6 md:gap-8"
                 animate={{ x: ['0%', '-50%'] }}
