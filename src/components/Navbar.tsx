@@ -39,7 +39,7 @@ export default function Navbar() {
            <Link href="#nft" className="hover:text-pink-500 transition">NFT</Link>
            <Link href="#roadmap" className="hover:text-pink-500 transition">Road Map</Link>
           <Link href="#faq" className="hover:text-pink-500 transition">FAQ</Link>
-          <a href="https://coincollect.org/assets/docs/CoinCollectWhitePaper.pdf" target="_blank" className="hover:text-pink-500 transition">WhitePaper</a>
+          <a href="/coincollect-wp-v1.0.pdf" target="_blank" className="hover:text-pink-500 transition">WhitePaper</a>
            <a href="https://docs.coincollect.org/" target="_blank" className="hover:text-pink-500 transition">Docs</a>
            
            <a 
@@ -73,7 +73,7 @@ export default function Navbar() {
              <Link href="#nft" onClick={toggleMenu} className="text-gray-300 hover:text-pink-500 transition">NFT</Link>
              <Link href="#roadmap" onClick={toggleMenu} className="text-gray-300 hover:text-pink-500 transition">Road Map</Link>
             <Link href="#faq" onClick={toggleMenu} className="text-gray-300 hover:text-pink-500 transition">FAQ</Link>
-            <a href="https://coincollect.org/assets/docs/CoinCollectWhitePaper.pdf" target="_blank" className="text-gray-300 hover:text-pink-500 transition">WhitePaper</a>
+            <a href="/coincollect-wp-v1.0.pdf" target="_blank" className="text-gray-300 hover:text-pink-500 transition">WhitePaper</a>
              <a href="https://docs.coincollect.org/" target="_blank" className="text-gray-300 hover:text-pink-500 transition">Docs</a>
              <a 
               href="https://app.coincollect.org/" 

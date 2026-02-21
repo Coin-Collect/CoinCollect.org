@@ -46,7 +46,7 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-bold text-lg mb-6">Resources</h4>
             <ul className="space-y-3">
-              <li><a href="https://coincollect.org/assets/docs/CoinCollectWhitePaper.pdf" target="_blank" className="text-gray-400 hover:text-pink-500 transition">WhitePaper</a></li>
+              <li><a href="/coincollect-wp-v1.0.pdf" target="_blank" className="text-gray-400 hover:text-pink-500 transition">WhitePaper</a></li>
               <li><a href="https://docs.coincollect.org/" target="_blank" className="text-gray-400 hover:text-pink-500 transition">Documentation</a></li>
               <li><a href="https://app.coincollect.org/" target="_blank" className="text-gray-400 hover:text-pink-500 transition">Launch App</a></li>
               <li><a href="https://app.coincollect.org/nfts/collections" target="_blank" className="text-gray-400 hover:text-pink-500 transition">Mint NFT</a></li>
